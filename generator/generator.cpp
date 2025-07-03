@@ -1,11 +1,6 @@
-#include <iostream>
-#include <vector>
+#include "SkillTreeGenerator.h"
 
 int main() {
-    std::vector<std::pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 0}};
-    
-    std::cout << "graph tree {\n";
-    for (auto& [u, v] : edges)
-        std::cout << "  " << u << " -- " << v << ";\n";
-    std::cout << "}\n";
+
+    return 0;
 }
