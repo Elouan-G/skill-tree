@@ -1,16 +1,7 @@
-#include <iostream>
-#include <sqlite3.h>
+#include "DBManager.h"
 #include <vector>
 
 int main() {
-    sqlite3* db;
-    char* errMsg = nullptr;
-
-    if (sqlite3_open("skill-tree.db", &db)) {
-        std::cerr << "Error opening DB\n";
-        return 1;
-    }
-
     std::vector<const char*> SQLinstructions;
 
     /* Activate foreign keys */
@@ -52,14 +43,10 @@ int main() {
         "(8, 9);"
     );
 
-    /* SQL instructions execution */
-    for (const char* sql : SQLinstructions) {
-        if (sqlite3_exec(db, sql, nullptr, nullptr, &errMsg) != SQLITE_OK) {
-            std::cerr << "SQL error: " << errMsg << "\n";
-            sqlite3_free(errMsg);
-        }
-    }
-
-    sqlite3_close(db);
+    /* Execute sql instruction list using DBManager */
+    DBManager* dbManager = new DBManager("skill-tree.db");
+    dbManager->executeSQL(SQLinstructions);
+    delete dbManager;
+    
     return 0;
 }
