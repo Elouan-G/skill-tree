@@ -7,7 +7,7 @@ namespace GraphUtils {
         else if (type == "CATEGORY" || type == "TRUNC-CATEGORY") return VertexType::CATEGORY;
         else if (type == "SKILL" || type == "BRANCH-SKILL") return VertexType::SKILL;
         else if (type == "LEVEL" || type == "LEAF-LEVEL") return VertexType::LEVEL;
-        throw "Unknown vertex type: " +  type;
+        throw std::runtime_error("Unknown vertex type: " +  type);
     }
 
     std::ostream& operator<<(std::ostream& os, const VertexType& type) {
