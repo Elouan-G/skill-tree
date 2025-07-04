@@ -1,4 +1,4 @@
-#include "DBManager.h"
+#include "DBManager.hpp"
 #include <vector>
 
 int main() {
@@ -33,7 +33,7 @@ int main() {
 
     /* Execute sql instruction list using DBManager */
     DBManager* dbManager = new DBManager("skill-tree.db");
-    dbManager->executeSQL(SQLinstructions);
+    dbManager->executeSimpleQuery(SQLinstructions);
     delete dbManager;
 
     return 0;
