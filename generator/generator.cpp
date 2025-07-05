@@ -8,7 +8,8 @@ int main() {
     SkillTreeDBManager db;
     std::unique_ptr<Vertices> vertices = db.getVertices();
     std::unique_ptr<Edges> edges = db.getEdges();
-    std::cout << "SkillTreeV:" << vertices->size() << std::endl;
-    std::cout << "SkillTreeE:" << edges->size() << std::endl;
+    for (Edge edge : *edges) {
+        std::cout << "[" << edge.source << ";" << edge.target << "] " << (*vertices)[edge.source] << ";" << (*vertices)[edge.target] << std::endl;
+    }
     return 0;
 }
