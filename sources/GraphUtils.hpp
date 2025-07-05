@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
+#include <vector>
+#include <unordered_map>
 
 namespace GraphUtils {
+    /* Data structures/enums */
     enum class VertexType {
         ROOT = 1,
         CATEGORY = 2,
@@ -9,18 +12,23 @@ namespace GraphUtils {
         LEVEL = 4
     };
 
-    VertexType fromString(const std::string& type);
-    std::ostream& operator<<(std::ostream& os, const VertexType& type);
-
-
-    struct Vertex {
-        std::size_t id;
+    struct VertexData {
         VertexType type;
         std::string value;
     };
+    typedef std::unordered_map<std::size_t, VertexData> Vertices;
 
     struct Edge {
-        std::size_t source;
-        std::size_t target;
+        size_t source;
+        size_t target;
     };
+    typedef std::vector<Edge> Edges;
+
+    /* Helper functions */
+    VertexType fromString(const std::string& type);
+
+    /* operator<< overloads */
+    std::ostream& operator<<(std::ostream& os, const VertexType& type);
+    std::ostream& operator<<(std::ostream& os, const VertexData& vertex);
+    std::ostream& operator<<(std::ostream& os, const Edge& edge);
 };

@@ -1,7 +1,6 @@
 #pragma once
 #include "DBManager.hpp"
 #include "GraphUtils.hpp"
-#include <vector>
 #include <memory>
 
 using namespace GraphUtils;
@@ -12,8 +11,9 @@ private:
     SkillTreeDBManager& operator=(const SkillTreeDBManager&) = delete;
 
 public:
-    SkillTreeDBManager() : DBManager("../db/skill-tree.db") {};
+    SkillTreeDBManager() : DBManager("db/skill-tree.db") {};
     ~SkillTreeDBManager() = default;
 
-    std::unique_ptr<std::vector<Vertex>> getVertices();
+    std::unique_ptr<Vertices> getVertices();
+    std::unique_ptr<Edges> getEdges();
 };
