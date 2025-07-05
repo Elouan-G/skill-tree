@@ -23,8 +23,8 @@ namespace GraphUtils {
         return os;
     }
 
-    std::ostream& operator<<(std::ostream& os, const VertexData& vertex) {
-        os << "Vertex(Type: " << vertex.type << ", Value: " << vertex.value << ")";
+    std::ostream& operator<<(std::ostream& os, const Vertex& vertex) {
+        os << "Vertex(ID: " << vertex.id << ", Type: " << vertex.type << ", Value: " << vertex.value << ")";
         return os;
     }
 

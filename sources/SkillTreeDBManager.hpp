@@ -15,5 +15,6 @@ public:
     ~SkillTreeDBManager() = default;
 
     std::unique_ptr<Vertices> getVertices();
+    std::unique_ptr<VerticesMap> getVerticesMap();
     std::unique_ptr<Edges> getEdges();
 };

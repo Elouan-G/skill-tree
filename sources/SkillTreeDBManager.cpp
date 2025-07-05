@@ -7,14 +7,24 @@ std::unique_ptr<Vertices> SkillTreeDBManager::getVertices() {
     sqlite3_prepare_v2(this->db, sql, -1, &stmt, nullptr);
     while (sqlite3_step(stmt) == SQLITE_ROW) {
         std::size_t id = sqlite3_column_int(stmt, 0);
-        VertexData vertexData {
+        Vertex vertex {
+            .id = static_cast<size_t>(sqlite3_column_int(stmt, 0)),
             .type = fromString(static_cast<std::string>(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)))),
             .value = static_cast<std::string>(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)))
         };
-        (*vertices)[id] = vertexData;
+        vertices->push_back(vertex);
     }
     sqlite3_finalize(stmt);
     return std::move(vertices);
+}
+
+std::unique_ptr<VerticesMap> SkillTreeDBManager::getVerticesMap() {
+    std::unique_ptr<VerticesMap> verticesMap = std::make_unique<VerticesMap>();
+    std::unique_ptr<Vertices> vertices = this->getVertices();
+    for (Vertex vertex : *vertices) {
+        (*verticesMap)[vertex.id] = vertex;
+    }
+    return std::move(verticesMap);
 }
 
 std::unique_ptr<Edges> SkillTreeDBManager::getEdges() {

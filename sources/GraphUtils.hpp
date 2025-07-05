@@ -12,11 +12,13 @@ namespace GraphUtils {
         LEVEL = 4
     };
 
-    struct VertexData {
+    struct Vertex {
+        size_t id;
         VertexType type;
         std::string value;
     };
-    typedef std::unordered_map<std::size_t, VertexData> Vertices;
+    typedef std::vector<Vertex> Vertices;
+    typedef std::unordered_map<std::size_t, Vertex> VerticesMap;
 
     struct Edge {
         size_t source;
@@ -29,6 +31,6 @@ namespace GraphUtils {
 
     /* operator<< overloads */
     std::ostream& operator<<(std::ostream& os, const VertexType& type);
-    std::ostream& operator<<(std::ostream& os, const VertexData& vertex);
+    std::ostream& operator<<(std::ostream& os, const Vertex& vertex);
     std::ostream& operator<<(std::ostream& os, const Edge& edge);
 };
