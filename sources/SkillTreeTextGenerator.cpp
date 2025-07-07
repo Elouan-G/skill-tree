@@ -17,8 +17,23 @@ Vertex SkillTreeGenerator::getRoot() const {
     throw std::runtime_error("No root vertex found in the skill tree.");
 }
 
+std::string SkillTreeGenerator::getVertexStyle(const VertexType type) const {
+    switch (type) {
+        case VertexType::ROOT:
+            return ", shape=\"diamond\", style=\"filled\", fillcolor=\"lightblue\"";
+        case VertexType::CATEGORY:
+            return ", shape=\"circle\", style=\"filled\", fillcolor=\"lightgreen\"";
+        case VertexType::SKILL:
+            return ", shape=\"ellipse\", style=\"filled\", fillcolor=\"lightyellow\"";
+        case VertexType::LEVEL:
+            return ", shape=\"box\", style=\"filled\", fillcolor=\"lightgray\"";
+        default:
+            return "";
+    }
+}
+
 std::string SkillTreeGenerator::getVertexText(const Vertex& vertex) const {
-    return "    node" + std::to_string(vertex.id) + " [label=\"" + vertex.value + "\"];\n";
+    return "    node" + std::to_string(vertex.id) + " [label=\"" + vertex.value + "\"" + this->getVertexStyle(vertex.type) + "];\n";
 }
 std::string SkillTreeGenerator::getEdgeText(const Edge& edge) const {
     return "    node" + std::to_string(edge.source) + " -- node" + std::to_string(edge.target) + ";\n";

@@ -14,6 +14,7 @@ private:
     std::string skillTreeText;
 
     Vertex getRoot() const;
+    std::string getVertexStyle(const VertexType type) const;
     std::string getVertexText(const Vertex& vertex) const;
     std::string getEdgeText(const Edge& edge) const;
     std::string getHeaderText() const;
