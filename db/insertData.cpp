@@ -17,7 +17,7 @@ int main() {
 
     /* vertices data insertion */
     SQLinstructions.push_back("INSERT OR IGNORE INTO vertices (vertex_name, vertex_type) VALUES "
-        /*1*/"('ROOT', 1),"
+        /*1*/"('RootTest', 1),"
         /*2*/"('CATa', 2),"
         /*3*/"('CATb', 2),"
         /*4*/"('SUBCATa', 2),"

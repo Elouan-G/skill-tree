@@ -2,21 +2,31 @@
 #include "GraphUtils.hpp"
 #include <vector>
 #include <memory>
+#include <string>
 
 using namespace GraphUtils;
 
 class SkillTreeGenerator {
 private:
-    std::unique_ptr<std::vector<Vertex>> vertices;
-    std::unique_ptr<std::vector<Edge>> edges;
+    std::unique_ptr<Vertices> vertices;
+    std::unique_ptr<VerticesMap> verticesMap;
+    std::unique_ptr<Edges> edges;
+    std::string skillTreeText;
 
-    SkillTreeGenerator(const SkillTreeGenerator&) = delete;
-    SkillTreeGenerator& operator=(const SkillTreeGenerator&) = delete;
+    Vertex getRoot() const;
+    std::string getVertexText(const Vertex& vertex) const;
+    std::string getEdgeText(const Edge& edge) const;
+    std::string getHeaderText() const;
+    std::string getVerticesText() const;
+    std::string getEdgesText() const;
+    std::string getFooterText() const;
+    void setSkillTreeText();
     
 public:
-    SkillTreeGenerator::SkillTreeGenerator(std::unique_ptr<std::vector<Vertex>> v,
-                                       std::unique_ptr<std::vector<Edge>> e)
-        : vertices(std::move(v)), edges(std::move(e)) {};
+    SkillTreeGenerator( std::unique_ptr<Vertices> v,
+                        std::unique_ptr<VerticesMap> vm,
+                        std::unique_ptr<Edges> e);
     ~SkillTreeGenerator() = default;
-    
+
+    void printSkillTreeText() const;
 };
