@@ -1,4 +1,5 @@
-#include "DBManager.h"
+#include "DBManager.hpp"
+#include <iostream>
 
 DBManager::DBManager(const std::string& dbName) {
     if (sqlite3_open(dbName.c_str(), &this->db)) {
@@ -7,7 +8,7 @@ DBManager::DBManager(const std::string& dbName) {
     }
 }
 
-void DBManager::executeSQL(const char* sql) {
+void DBManager::executeSimpleQuery(const char* sql) {
     char* errMsg = nullptr;
     if (sqlite3_exec(this->db, sql, nullptr, nullptr, &errMsg) != SQLITE_OK) {
         std::cerr << "SQL error: " << errMsg << "\n";
@@ -16,7 +17,7 @@ void DBManager::executeSQL(const char* sql) {
     }
 }
 
-void DBManager::executeSQL(const std::vector<const char*>& sqlInstructions) {
+void DBManager::executeSimpleQuery(const std::vector<const char*>& sqlInstructions) {
     char* errMsg = nullptr;
     for (const char* sql : sqlInstructions) {
         if (sqlite3_exec(this->db, sql, nullptr, nullptr, &errMsg) != SQLITE_OK) {

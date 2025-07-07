@@ -29,7 +29,7 @@ Simple C++ skill tree builder using SQLite and Graphviz
 
 ### Use the skill-tree program
 
-1. Go in the app directory : `cd app`
+1. Go in the generator directory : `cd generator`
 2. Run the make command : `make`
 3. Go back to the skill-tree directory : `cd ..`
 4. Run the run script : `./run.sh`

@@ -1,4 +1,4 @@
-#include "DBManager.h"
+#include "DBManager.hpp"
 #include <vector>
 
 int main() {
@@ -7,8 +7,8 @@ int main() {
     /* Activate foreign keys */
     SQLinstructions.push_back("PRAGMA foreign_keys = ON;");
 
-    /* vertice_type data insertion */
-    SQLinstructions.push_back("INSERT OR IGNORE INTO vertice_type (type_name, type_description) VALUES "
+    /* vertex_type data insertion */
+    SQLinstructions.push_back("INSERT OR IGNORE INTO vertex_type (type_name, type_description) VALUES "
         /*1*/"('ROOT-USER', 'The root represents the users name, only one root is allowed per skill-tree.'),"
         /*2*/"('TRUNC-CATEGORY', 'The truncs represent the skill categories, they are connected to the root of their tree (main categories) or to another category (sub-categories).'),"
         /*3*/"('BRANCH-SKILL', 'Branches are skills, they are connected to a trunc (category, sub-category).'),"
@@ -16,8 +16,8 @@ int main() {
     );
 
     /* vertices data insertion */
-    SQLinstructions.push_back("INSERT OR IGNORE INTO vertices (vertice_name, vertice_type) VALUES "
-        /*1*/"('ROOT', 1),"
+    SQLinstructions.push_back("INSERT OR IGNORE INTO vertices (vertex_name, vertex_type) VALUES "
+        /*1*/"('RootTest', 1),"
         /*2*/"('CATa', 2),"
         /*3*/"('CATb', 2),"
         /*4*/"('SUBCATa', 2),"
@@ -29,7 +29,7 @@ int main() {
     );
 
     /* edges data insertion */
-    SQLinstructions.push_back("INSERT OR IGNORE INTO edges (source_vertice, target_vertice) VALUES "
+    SQLinstructions.push_back("INSERT OR IGNORE INTO edges (source_vertex, target_vertex) VALUES "
         /*CATa*/
         "(1, 2),"
         "(2, 4),"
@@ -45,7 +45,7 @@ int main() {
 
     /* Execute sql instruction list using DBManager */
     DBManager* dbManager = new DBManager("skill-tree.db");
-    dbManager->executeSQL(SQLinstructions);
+    dbManager->executeSimpleQuery(SQLinstructions);
     delete dbManager;
     
     return 0;
