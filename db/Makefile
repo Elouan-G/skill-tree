@@ -1,5 +1,7 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -I../sources
+
+INCLUDE_DIRS := $(shell find ../sources -type d)
+CXXFLAGS = -std=c++17 $(addprefix -I, $(INCLUDE_DIRS))
 
 SOURCES_DIR = ../sources
 CREATE_FILE = createDB.cpp
@@ -7,21 +9,21 @@ INSERT_FILE = insertData.cpp
 INSERT2_FILE = insertData2.cpp
 
 LIBS = -lsqlite3
-SOURCES = $(wildcard $(SOURCES_DIR)/*.cpp)
+SOURCES = $(shell find $(SOURCES_DIR) -name "*.cpp")
 
 CREATE_OBJS = $(SOURCES) $(CREATE_FILE)
 INSERT_OBJS = $(SOURCES) $(INSERT_FILE)
 INSERT2_OBJS = $(SOURCES) $(INSERT2_FILE)
 
-all: create insert insert2
+all: CREATE INSERT INSERT2
 
-create: $(CREATE_OBJS)
+CREATE: $(CREATE_OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o create.out $(LIBS)
 
-insert: $(INSERT_OBJS)
+INSERT: $(INSERT_OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o insert.out $(LIBS)
 
-insert2: $(INSERT2_OBJS)
+INSERT2: $(INSERT2_OBJS)
 	 $(CXX) $(CXXFLAGS) $^ -o insert2.out $(LIBS)
 
 clean:
