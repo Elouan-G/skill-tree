@@ -1,11 +1,11 @@
 #include "SkillTreeTextGenerator.hpp"
+
 #include <iostream>
 
-SkillTreeGenerator::SkillTreeGenerator(std::unique_ptr<Vertices> v,
-                                           std::unique_ptr<VerticesMap> vm,
-                                           std::unique_ptr<Edges> e)
+SkillTreeGenerator::SkillTreeGenerator(std::unique_ptr<Vertices> v, std::unique_ptr<VerticesMap> vm,
+                                       std::unique_ptr<Edges> e)
     : vertices(std::move(v)), verticesMap(std::move(vm)), edges(std::move(e)) {
-        this->setSkillTreeText();
+    this->setSkillTreeText();
 }
 
 Vertex SkillTreeGenerator::getRoot() const {
@@ -33,10 +33,12 @@ std::string SkillTreeGenerator::getVertexStyle(const VertexType type) const {
 }
 
 std::string SkillTreeGenerator::getVertexText(const Vertex& vertex) const {
-    return "    node" + std::to_string(vertex.id) + " [label=\"" + vertex.value + "\"" + this->getVertexStyle(vertex.type) + "];\n";
+    return "    node" + std::to_string(vertex.id) + " [label=\"" + vertex.value + "\"" +
+           this->getVertexStyle(vertex.type) + "];\n";
 }
 std::string SkillTreeGenerator::getEdgeText(const Edge& edge) const {
-    return "    node" + std::to_string(edge.source) + " -- node" + std::to_string(edge.target) + ";\n";
+    return "    node" + std::to_string(edge.source) + " -- node" + std::to_string(edge.target) +
+           ";\n";
 }
 
 std::string SkillTreeGenerator::getHeaderText() const {

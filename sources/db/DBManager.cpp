@@ -1,4 +1,5 @@
 #include "DBManager.hpp"
+
 #include <iostream>
 
 DBManager::DBManager(const std::string& dbName) {

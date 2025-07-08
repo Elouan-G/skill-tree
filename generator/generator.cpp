@@ -1,7 +1,8 @@
+#include <memory>
+
+#include "GraphUtils.hpp"
 #include "SkillTreeDBManager.hpp"
 #include "SkillTreeTextGenerator.hpp"
-#include "GraphUtils.hpp"
-#include <memory>
 
 using namespace GraphUtils;
 
