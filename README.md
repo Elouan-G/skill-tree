@@ -20,16 +20,16 @@ Simple C++ skill tree builder using SQLite and Graphviz
 
 ## Startup guide
 
+### Build
+
+- Run the `make` command in the projects root directory
+
 ### Create and insert test data in DB
 
 1. Go in the db directory : `cd db`
-2. Run the make command : `make`
-3. Run the create program : `./create.out`
-4. Run the insert program : `./insert.out` or `./insert2.out`
+2. Run the create program : `./create.out`
+3. Run the insert program : `./insert.out` or `./insert2.out`
 
 ### Generate the skill-tree from the DB
 
-1. Go in the generator directory : `cd generator`
-2. Run the make command : `make`
-3. Go back to the skill-tree directory : `cd ..`
-4. Execute the run script : `./run.sh`
+- Execute the run script in the projects root directory : `./run.sh`
