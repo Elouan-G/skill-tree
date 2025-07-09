@@ -18,7 +18,9 @@ auto get_commands_main = []() {
 auto get_commands_view = []() {
     std::string out =
         "\nVIEW menu:\n"
-        "  exit   - Terminates the program, unsaved changes are lost\n"
+        "  exit            - Terminates the program, unsaved changes are lost\n"
+        "  list            - List all skill-trees\n"
+        "  generate <name> - Generate a skill-tree image\n"
         "v";
     return out;
 };
