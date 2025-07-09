@@ -19,21 +19,10 @@ class SkillTreeCLI : public CLI {
 
     void run() override;
 
-   protected:
+   private:
     void printHelp() override;
 
-   private:
-    std::string state = "main";
-    std::size_t stateStage = 0;
-
-    void gotoMainMenu();
-    void gotoViewMenu();
-    void gotoNewMenu();
-    void gotoEditMenu();
-    void gotoDeleteMenu();
-
-    /* Menu print utils */
-   private:
+   protected:
     void printHelpMenuOptions();
     void printMainMenuOptions();
     void printViewMenuOptions();
