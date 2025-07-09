@@ -1,4 +1,4 @@
-#include "SkillTreeCLI.h"
+#include "SkillTreeCLI.hpp"
 
 void SkillTreeCLI::printHelpMenuOptions() {
     print("  help - Show the current available commands");

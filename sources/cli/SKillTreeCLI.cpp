@@ -1,4 +1,4 @@
-#include "SkillTreeCLI.h"
+#include "SkillTreeCLI.hpp"
 
 void SkillTreeCLI::run() {
     print("Welcome to the Skill Tree CLI!");

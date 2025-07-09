@@ -1,4 +1,4 @@
-#include "SkillTreeCLI.h"
+#include "SkillTreeCLI.hpp"
 
 int main() {
     SkillTreeCLI* cli = SkillTreeCLI::getInstance();

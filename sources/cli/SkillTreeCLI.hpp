@@ -1,7 +1,7 @@
 #pragma once
-#include "CLI.h"
+#include "CLI.hpp"
 
-class SkillTreeCLI final : public CLI {
+class SkillTreeCLI : public CLI {
    protected:
     SkillTreeCLI() = default;
 
@@ -22,10 +22,10 @@ class SkillTreeCLI final : public CLI {
    protected:
     void printHelp() override;
 
-    /* Methods/attributes dedicated to the SkillTreeCLI behavior implementation. */
    private:
     std::string state = "main";
     std::size_t stateStage = 0;
+
     void gotoMainMenu();
     void gotoViewMenu();
     void gotoNewMenu();
