@@ -1,6 +1,8 @@
-#include <iostream>
+#include "SkillTreeCLI.h"
 
 int main() {
-    std::cout << "TEST" << std::endl;
+    SkillTreeCLI* cli = SkillTreeCLI::getInstance();
+    cli->run();
+    delete cli;
     return 0;
 }
