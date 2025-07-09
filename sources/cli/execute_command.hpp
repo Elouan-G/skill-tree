@@ -1,8 +1,10 @@
 #pragma once
 
+#include "cli_utils.hpp"
+#include "db_utils.hpp"
 #include "state.hpp"
-#include "utils.hpp"
 
+/* MAIN menu */
 auto change_menu = [](const CLIstate& state, const MenuList& newMenu) {
     CLIstate newState = state;
     newState.currentMenu = newMenu;
@@ -22,21 +24,53 @@ auto execute_command_main = [](const CLIstate& state) {
     return newState;
 };
 
-auto execute_command_view = [](const CLIstate& state) {
+/* VIEW menu */
+auto get_skill_tree_list = []() {
+    std::string out = "\nSkill Tree(s):\n";
+    std::vector<std::string> skillTreeList = get_skill_tree_list_from_db();
+    for (const auto& skillTreeName : skillTreeList) {
+        out += "  - " + skillTreeName + "\n";
+    }
+    return out;
+};
+
+auto execute_command_list = [](const CLIstate& state) {
+    CLIstate newState = state;
+    print(get_skill_tree_list());
+    newState.currentCommand.clear();
+    return newState;
+};
+
+auto execute_command_generate = [](const CLIstate& state) {
     CLIstate newState = state;
     return newState;
 };
 
+auto execute_command_view = [](const CLIstate& state) {
+    CLIstate newState = state;
+    if (state.currentCommand.size() == 1 && state.currentCommand[0] == "list")
+        newState = execute_command_list(state);
+    else if (state.currentCommand.size() == 2 && state.currentCommand[0] == "generate")
+        newState = execute_command_generate(state);
+    else
+        newState = handle_unknown_command(state);
+
+    return newState;
+};
+
+/* CREATE menu */
 auto execute_command_create = [](const CLIstate& state) {
     CLIstate newState = state;
     return newState;
 };
 
+/* EDIT menu */
 auto execute_command_edit = [](const CLIstate& state) {
     CLIstate newState = state;
     return newState;
 };
 
+/* DELETE menu */
 auto execute_command_delete = [](const CLIstate& state) {
     CLIstate newState = state;
     return newState;

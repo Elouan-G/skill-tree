@@ -1,7 +1,7 @@
+#include "cli_utils.hpp"
 #include "execute_command.hpp"
 #include "get_commands.hpp"
 #include "state.hpp"
-#include "utils.hpp"
 
 auto get_commands = [](const CLIstate& state) -> std::string {
     std::string commands;
