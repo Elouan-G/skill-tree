@@ -8,27 +8,63 @@ void SkillTreeCLI::run() {
         std::string input = getInput();
         if (input == "exit") {
             break;
-        } else if (input == "help") {
+        } else if (input == "help" || input == "?" || input == "h") {
             printHelp();
-        } else if (input == "menu") {
-            printMainMenu();
+        } else if (input == "menu" || input == "main" || input == "m") {
+            gotoMainMenu();
+        } else if (input == "view" || input == "v") {
+            gotoViewMenu();
+        } else if (input == "new" || input == "create" || input == "n") {
+            gotoNewMenu();
+        } else if (input == "edit" || input == "modify" || input == "e") {
+            gotoEditMenu();
+        } else if (input == "del" || input == "delete" || input == "d") {
+            gotoDeleteMenu();
         } else {
             printError("Unknown command: " + input);
         }
     }
+
+    print("Exiting Skill Tree CLI, unsaved changes were cancelled. Goodbye!");
 }
 
+/* Displayed content depends on state and stage. */
 void SkillTreeCLI::printHelp() {
-    print("Available commands:");
-    print("  help - Show this help message");
-    print("  exit - Exit the CLI");
-    print("  menu - View the main menu");
+    print("Available commands: (state-" + state + ";stage-" + std::to_string(stateStage) + ")");
+    printHelpMenuOptions();
 }
 
-void SkillTreeCLI::printMainMenu() {
+void SkillTreeCLI::gotoMainMenu() {
+    state = "main";
+    stateStage = 0;
     print("Main Menu:");
-    print("  view - View Skill Tree");
-    print("  new  - New Skill Tree");
-    print("  edit - Edit Skill Tree");
-    print("  del  - Delete Skill Tree");
+    printMainMenuOptions();
+}
+
+void SkillTreeCLI::gotoViewMenu() {
+    state = "view";
+    stateStage = 0;
+    print("View Menu:");
+    printViewMenuOptions();
+}
+
+void SkillTreeCLI::gotoNewMenu() {
+    state = "new";
+    stateStage = 0;
+    print("New Menu:");
+    printNewMenuOptions();
+}
+
+void SkillTreeCLI::gotoEditMenu() {
+    state = "edit";
+    stateStage = 0;
+    print("Edit Menu:");
+    printEditMenuOptions();
+}
+
+void SkillTreeCLI::gotoDeleteMenu() {
+    state = "delete";
+    stateStage = 0;
+    print("Delete Menu:");
+    printDeleteMenuOptions();
 }
