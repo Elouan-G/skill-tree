@@ -30,4 +30,7 @@ class SkillTreeGenerator {
     ~SkillTreeGenerator() = default;
 
     void printSkillTreeText() const;
+    std::string getSkillTreeText() const {
+        return skillTreeText;
+    };
 };
