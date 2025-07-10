@@ -7,7 +7,7 @@
 
 using namespace GraphUtils;
 
-class SkillTreeGenerator {
+class SkillTreeTextGenerator {
    private:
     std::unique_ptr<Vertices> vertices;
     std::unique_ptr<VerticesMap> verticesMap;
@@ -25,9 +25,9 @@ class SkillTreeGenerator {
     void setSkillTreeText();
 
    public:
-    SkillTreeGenerator(std::unique_ptr<Vertices> v, std::unique_ptr<VerticesMap> vm,
-                       std::unique_ptr<Edges> e);
-    ~SkillTreeGenerator() = default;
+    SkillTreeTextGenerator(std::unique_ptr<Vertices> v, std::unique_ptr<VerticesMap> vm,
+                           std::unique_ptr<Edges> e);
+    ~SkillTreeTextGenerator() = default;
 
     void printSkillTreeText() const;
     std::string getSkillTreeText() const {

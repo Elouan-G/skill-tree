@@ -11,7 +11,7 @@ int main() {
     std::unique_ptr<Vertices> vertices = db.getVertices();
     std::unique_ptr<VerticesMap> verticesMap = db.getVerticesMap();
     std::unique_ptr<Edges> edges = db.getEdges();
-    SkillTreeGenerator generator(std::move(vertices), std::move(verticesMap), std::move(edges));
+    SkillTreeTextGenerator generator(std::move(vertices), std::move(verticesMap), std::move(edges));
     generator.printSkillTreeText();
     return 0;
 }

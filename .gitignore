@@ -4,3 +4,5 @@ build.sh
 .clang-tidy
 .clang-format
 .cache
+*.dot
+*.png
