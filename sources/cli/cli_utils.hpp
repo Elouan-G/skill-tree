@@ -27,11 +27,16 @@ auto say_hello = []() { print("Hello, welcome to the skill-tree CLI program!\n")
 
 auto say_goodbye = []() { print("\nGoodbye! See you next time!"); };
 
+auto get_full_command = [](const CLIstate& state) {
+    std::string fullCommand;
+    for (const auto& command : state.currentCommand) {
+        fullCommand += command + " ";
+    }
+    return fullCommand;
+};
+
 auto handle_unknown_command = [](const CLIstate& state) {
-    CLIstate newState = state;
-    std::cerr << "Unknown command: " << state.currentCommand.back() << std::endl;
-    newState.currentCommand.clear();
-    return newState;
+    std::cerr << "Unknown command: " << get_full_command(state) << std::endl;
 };
 
 auto handle_exit = [](const CLIstate& state) {

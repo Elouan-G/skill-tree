@@ -8,7 +8,6 @@
 auto change_menu = [](const CLIstate& state, const MenuList& newMenu) {
     CLIstate newState = state;
     newState.currentMenu = newMenu;
-    newState.currentCommand.clear();
     return newState;
 };
 
@@ -20,7 +19,8 @@ auto execute_command_main = [](const CLIstate& state) {
     else if (to_menu(state.currentCommand[0]) != UNKNOWN)
         newState = change_menu(state, to_menu(state.currentCommand[0]));
     else
-        newState = handle_unknown_command(state);
+        handle_unknown_command(state);
+
     return newState;
 };
 /*-----------*/
@@ -33,14 +33,8 @@ auto get_skill_tree_list = []() {
     for (const auto& skillTreeName : skillTreeList) {
         out += "  - " + skillTreeName + "\n";
     }
+    out = out.back() == '\n' ? out.substr(0, out.size() - 1) : out;
     return out;
-};
-
-auto execute_command_list = [](const CLIstate& state) {
-    CLIstate newState = state;
-    print(get_skill_tree_list());
-    newState.currentCommand.clear();
-    return newState;
 };
 
 /* GENERATE COMMAND */
@@ -56,9 +50,10 @@ auto execute_command_generate = [](const CLIstate& state) {
     CLIstate newState = state;
     if (isTree(state.currentCommand[1])) {
         generate_skill_tree_image(state.currentCommand[1]);
-        newState.currentCommand.clear();
+        print("Skill tree '" + state.currentCommand[1] + "' generated and opened successfully.");
     } else {
-        newState = handle_unknown_command(state);
+        print("Skill tree '" + state.currentCommand[1] + "' does not exist.");
+        handle_unknown_command(state);
     }
     return newState;
 };
@@ -67,11 +62,11 @@ auto execute_command_generate = [](const CLIstate& state) {
 auto execute_command_view = [](const CLIstate& state) {
     CLIstate newState = state;
     if (state.currentCommand.size() == 1 && state.currentCommand[0] == "list")
-        newState = execute_command_list(state);
+        print(get_skill_tree_list());
     else if (state.currentCommand.size() == 2 && state.currentCommand[0] == "generate")
         newState = execute_command_generate(state);
     else
-        newState = handle_unknown_command(state);
+        handle_unknown_command(state);
 
     return newState;
 };
