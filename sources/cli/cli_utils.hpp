@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <iostream>
 #include <string>
 
@@ -11,9 +12,14 @@ auto print(const std::string& message) {
 
 auto read_input = [](const CLIstate& state) {
     CLIstate newState = state;
+    newState.currentCommand.clear();
     std::string command;
     std::getline(std::cin, command);
-    newState.currentCommand.push_back(command);
+    command += ' ';
+    while (command.length() > 0 && command[0] != ' ') {
+        newState.currentCommand.push_back(command.substr(0, command.find(' ')));
+        command.erase(0, command.find(' ') + 1);
+    }
     return newState;
 };
 
@@ -24,7 +30,7 @@ auto say_goodbye = []() { print("\nGoodbye! See you next time!"); };
 auto handle_unknown_command = [](const CLIstate& state) {
     CLIstate newState = state;
     std::cerr << "Unknown command: " << state.currentCommand.back() << std::endl;
-    newState.currentCommand.pop_back();
+    newState.currentCommand.clear();
     return newState;
 };
 
