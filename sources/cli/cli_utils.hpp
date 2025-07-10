@@ -23,9 +23,9 @@ auto read_input = [](const CLIstate& state) {
     return newState;
 };
 
-auto say_hello = []() { print("Hello, welcome to the skill-tree CLI program!\n"); };
+auto say_hello = []() { print("Hello, welcome to the skill-tree CLI program!"); };
 
-auto say_goodbye = []() { print("\nGoodbye! See you next time!"); };
+auto say_goodbye = []() { print("\n\n\nGoodbye! See you next time!"); };
 
 auto get_full_command = [](const CLIstate& state) {
     std::string fullCommand;

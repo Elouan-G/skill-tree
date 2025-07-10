@@ -4,17 +4,17 @@
 #include "state.hpp"
 
 auto get_commands = [](const CLIstate& state) -> std::string {
-    std::string commands;
+    std::string commands = "\n\n";
     if (state.currentMenu == MAIN)
-        commands = get_commands_main();
+        commands += get_commands_main();
     else if (state.currentMenu == VIEW)
-        commands = get_commands_view();
+        commands += get_commands_view();
     else if (state.currentMenu == CREATE)
-        commands = get_commands_create();
+        commands += get_commands_create();
     else if (state.currentMenu == EDIT)
-        commands = get_commands_edit();
+        commands += get_commands_edit();
     else if (state.currentMenu == DELETE)
-        commands = get_commands_delete();
+        commands += get_commands_delete();
     else
         handle_error("show_commands", "Undefined menu state: " + to_string(state.currentMenu));
 
