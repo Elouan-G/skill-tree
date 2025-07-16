@@ -43,22 +43,23 @@ int main() {
         "('LVLa1', 4),"
         /*8*/
         "('LVLb1', 4),"
-        /*9*/ "('LVLb2', 4);");
+        /*9*/
+        "('LVLb2', 4);");
 
     /* edges data insertion */
     SQLinstructions.push_back(
-        "INSERT OR IGNORE INTO edges (source_vertex, target_vertex) VALUES "
+        "INSERT OR IGNORE INTO edges (source_vertex, target_vertex, tree_id) VALUES "
         /*CATa*/
-        "(1, 2),"
-        "(2, 4),"
-        "(4, 5),"
-        "(5, 7),"
+        "(1, 2, 1),"
+        "(2, 4, 1),"
+        "(4, 5, 1),"
+        "(5, 7, 1),"
 
         /*CATb*/
-        "(1, 3),"
-        "(3, 6),"
-        "(6, 8),"
-        "(8, 9);");
+        "(1, 3, 1),"
+        "(3, 6, 1),"
+        "(6, 8, 1),"
+        "(8, 9, 1);");
 
     /* Execute sql instruction list using DBManager */
     DBManager* dbManager = new DBManager("skill-tree.db");

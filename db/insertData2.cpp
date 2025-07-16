@@ -27,46 +27,51 @@ int main() {
     /* vertices data insertion */
     SQLinstructions.push_back(
         "INSERT OR IGNORE INTO vertices (vertex_name, vertex_type) VALUES "
-        /*1*/
-        "('RootTest2', 1),"
-        /*2*/
-        "('Beauty', 2),"
-        /*3*/
-        "('Cleverness', 2),"
-        /*4*/
-        "('Technical', 2),"
-        /*5*/
-        "('Sensibility', 2),"
-        /*6*/
-        "('Empathy', 3),"
-        /*7*/
-        "('Generosity', 3),"
-        /*8*/
-        "('Empathy Beginner', 4),"
-        /*9*/
-        "('Empathy Intermediate', 4),"
         /*10*/
-        "('Empathy Expert', 4),"
+        "('RootTest2', 1),"
         /*11*/
-        "('Nice', 4),"
+        "('Beauty', 2),"
         /*12*/
-        "('Super Nice', 4)"
+        "('Cleverness', 2),"
+        /*13*/
+        "('Technical', 2),"
+        /*14*/
+        "('Sensibility', 2),"
+        /*15*/
+        "('Empathy', 3),"
+        /*16*/
+        "('Generosity', 3),"
+        /*17*/
+        "('Empathy Beginner', 4),"
+        /*18*/
+        "('Empathy Intermediate', 4),"
+        /*19*/
+        "('Empathy Expert', 4),"
+        /*20*/
+        "('Nice', 4),"
+        /*21*/
+        "('Super Nice', 4),"
+        /*22*/
+        "('Test Skill', 3)"
         ";");
 
     /* edges data insertion */
     SQLinstructions.push_back(
-        "INSERT OR IGNORE INTO edges (source_vertex, target_vertex) VALUES "
-        "(1, 2),"
-        "(1, 3),"
-        "(3, 4),"
-        "(3, 5),"
-        "(5, 6),"
-        "(5, 7),"
-        "(6, 8),"
-        "(6, 9),"
-        "(6, 10),"
-        "(7, 11),"
-        "(7, 12)"
+        "INSERT OR IGNORE INTO edges (source_vertex, target_vertex, tree_id) VALUES "
+        "(10, 11, 10),"
+        "(10, 12, 10),"
+        "(12, 13, 10),"
+        "(12, 14, 10),"
+        "(14, 15, 10),"
+        "(14, 16, 10),"
+        "(15, 17, 10),"
+        "(15, 18, 10),"
+        "(15, 19, 10),"
+        "(16, 20, 10),"
+        "(16, 21, 10),"
+        "(13, 22, 10),"
+        "(22, 8, 10),"
+        "(22, 9, 10)"
         ";");
 
     /* Execute sql instruction list using DBManager */
